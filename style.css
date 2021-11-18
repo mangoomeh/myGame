@@ -1,34 +1,34 @@
 :root {
-    --gameWindow: 700px;
-    --boardWidth: calc(var(--gameWindow) - 150px);
-    --tileWidth: calc(var(--boardWidth) / 11);
+  --gameWindow: 700px;
+  --boardWidth: calc(var(--gameWindow) - 150px);
+  --tileWidth: calc(var(--boardWidth) / 11);
 }
 
 #gameWindow {
-    width: var(--gameWindow);
-    height: var(--gameWindow);
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: var(--gameWindow);
+  height: var(--gameWindow);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #board {
-    width: var(--boardWidth);
-    height: var(--boardWidth);
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
+  width: var(--boardWidth);
+  height: var(--boardWidth);
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
 }
 
 div {
-    width: var(--tileWidth);
-    height: var(--tileWidth);
-    /* box-sizing accounts for borders/margins/padding */
-    box-sizing: border-box; 
-    border: 1px solid black;
+  width: var(--tileWidth);
+  height: var(--tileWidth);
+  /* box-sizing accounts for borders/margins/padding */
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 
 div:nth-child(13),
@@ -39,8 +39,39 @@ div:nth-child(25),
 div:nth-child(28),
 div:nth-child(31),
 div:nth-child(34),
-div:nth-child(37)
-{
-    width: calc(var(--tileWidth)*9);
-    border: none;
+div:nth-child(37) {
+  width: calc(var(--tileWidth) * 9);
+  border: none;
+}
+
+.redTile {
+  background-color: rgb(255, 0, 0);
+}
+
+.yellowTile {
+  background-color: rgb(255, 255, 0);
+}
+
+.greenTile {
+  background-color: green;
+}
+
+.blueTile {
+    background-color: blue;
+}
+
+.pinkTile {
+    background-color: hotpink;
+}
+
+.brownTile {
+    background-color: brown;
+}
+
+.lightBlueTile {
+    background-color: lightblue;
+}
+
+.orangeTile {
+    background-color: orange;
 }

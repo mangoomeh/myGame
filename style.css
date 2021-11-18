@@ -1,5 +1,46 @@
+:root {
+    --gameWindow: 700px;
+    --boardWidth: calc(var(--gameWindow) - 150px);
+    --tileWidth: calc(var(--boardWidth) / 11);
+}
+
 #gameWindow {
-    width: 600px;
-    height: 600px;
+    width: var(--gameWindow);
+    height: var(--gameWindow);
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#board {
+    width: var(--boardWidth);
+    height: var(--boardWidth);
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+div {
+    width: var(--tileWidth);
+    height: var(--tileWidth);
+    /* box-sizing accounts for borders/margins/padding */
+    box-sizing: border-box; 
+    border: 1px solid black;
+}
+
+div:nth-child(13),
+div:nth-child(16),
+div:nth-child(19),
+div:nth-child(22),
+div:nth-child(25),
+div:nth-child(28),
+div:nth-child(31),
+div:nth-child(34),
+div:nth-child(37)
+{
+    width: calc(var(--tileWidth)*9);
+    border: none;
 }

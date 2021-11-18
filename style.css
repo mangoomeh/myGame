@@ -4,6 +4,11 @@
   --tileWidth: calc(var(--boardWidth) / 11);
 }
 
+body {
+    display: flex;
+    justify-content: center;
+}
+
 #gameWindow {
   width: var(--gameWindow);
   height: var(--gameWindow);

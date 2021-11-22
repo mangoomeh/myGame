@@ -35,21 +35,21 @@ const titleDeeds = [
   },
 
   {
-    colour: "LIGHT BLUE",
+    colour: "LIGHTBLUE",
     title: "THE ANGEL ISLINGTON ROAD",
     price: 100,
     rent: 6,
   },
 
   {
-    colour: "LIGHT BLUE",
+    colour: "LIGHTBLUE",
     title: "EUSTON ROAD",
     price: 100,
     rent: 6,
   },
 
   {
-    colour: "LIGHT BLUE",
+    colour: "LIGHTBLUE",
     title: "PENTONVILLE ROAD",
     price: 120,
     rent: 8,
@@ -175,6 +175,34 @@ const titleDeeds = [
   },
 ];
 
+const deedPositions = [
+  [29, 35],
+  [20, 14, 11],
+  [1, 3, 4],
+  [6, 8, 9],
+  [13, 19, 22],
+  [28, 31, 37],
+  [47, 46, 44],
+  [41, 39],
+];
+
+function generateBoard() {
+  const board = document.querySelector("#board");
+  for (let i = 0; i < 49; i++) {
+    const tile = document.createElement("div");
+    tile.className = "tile";
+    tile.innerHTML = i;
+    board.append(tile);
+  }
+  const tiles = board.childNodes
+  console.log(tiles)
+  for (const list of deedPositions) {
+    for (const deed of list) {
+      board.childNodes[deed].style.backgroundColor = titleDeeds.pop().colour
+    }
+  }
+}
+
 function newGame(event) {
   if (event.target.id !== "newGame") {
     return;
@@ -193,13 +221,32 @@ function newGame(event) {
   }
   main(value);
 }
-document.querySelector("#screen").addEventListener("click", newGame);
 
 function main(numOfPlayers) {
+  const screen = document.querySelector("#screen");
+  screen.innerHTML = "";
+  
+  // create information labels
+  const numOfPlayersLabel = document.createElement("div");
+  const numOfPlayersLabel_h2 = document.createElement("h2");
+  numOfPlayersLabel_h2.innerHTML = "No. of Players:";
+  const numOfPlayersLabel_h1 = document.createElement("h1");
+  numOfPlayersLabel_h1.innerHTML = numOfPlayers;
+  numOfPlayersLabel.append(numOfPlayersLabel_h2, numOfPlayersLabel_h1);
+  screen.append(numOfPlayersLabel);
+  
+  const currPlayerLabel = document.createElement("div");
+  const h2 = document.createElement("h2");
+  h2.innerHTML = "Current Player:"
+  const h1 = document.createElement("h1")
+  h1.innerHTML = "Player 1"
+
   // create players
-  const players = []
+  const players = [];
   for (let i = 0; i < numOfPlayers; i++) {
-    players.push(new Player(i+1))
+    players.push(new Player(i + 1));
   }
-  console.log(players)
 }
+
+generateBoard();
+document.querySelector("#screen").addEventListener("click", newGame);

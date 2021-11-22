@@ -29,7 +29,7 @@ body {
   position:relative;
 }
 
-div {
+.tile {
   width: var(--tileWidth);
   height: var(--tileWidth);
   /* box-sizing accounts for borders/margins/padding */
@@ -37,15 +37,15 @@ div {
   border: 1px solid black;
 }
 
-div:nth-child(13),
-div:nth-child(16),
-div:nth-child(19),
-div:nth-child(22),
-div:nth-child(25),
-div:nth-child(28),
-div:nth-child(31),
-div:nth-child(34),
-div:nth-child(37) {
+div.tile:nth-child(13),
+div.tile:nth-child(16),
+div.tile:nth-child(19),
+div.tile:nth-child(22),
+div.tile:nth-child(25),
+div.tile:nth-child(28),
+div.tile:nth-child(31),
+div.tile:nth-child(34),
+div.tile:nth-child(37) {
   width: calc(var(--tileWidth) * 9);
   border: none;
 }
@@ -56,8 +56,16 @@ div:nth-child(37) {
   justify-content: center;
   align-items: center;
   position: absolute;
+
   width: calc(var(--tileWidth) * 9);
   height: calc(var(--tileWidth) * 9);
+
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+h3, form, button {
+  margin: 10px;
 }
 
 .redTile {

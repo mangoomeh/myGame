@@ -26,6 +26,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
+  position:relative;
 }
 
 div {
@@ -47,6 +48,16 @@ div:nth-child(34),
 div:nth-child(37) {
   width: calc(var(--tileWidth) * 9);
   border: none;
+}
+
+#screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: calc(var(--tileWidth) * 9);
+  height: calc(var(--tileWidth) * 9);
 }
 
 .redTile {

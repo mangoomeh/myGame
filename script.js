@@ -14,8 +14,8 @@ class Player {
   }
 
   buyDeed(deed) {
-    this.money -= deed.price
-    this.ownedDeeds.push(deed)
+    this.money -= deed.price;
+    this.ownedDeeds.push(deed);
   }
 }
 
@@ -174,3 +174,32 @@ const titleDeeds = [
     rent: 50,
   },
 ];
+
+function newGame(event) {
+  if (event.target.id !== "newGame") {
+    return;
+  }
+  let checked = false;
+  let value = 0;
+  for (const radio of document.getElementsByName("numberOfPlayers")) {
+    if (radio.checked) {
+      checked = true;
+      value = radio.value;
+    }
+  }
+  if (!checked) {
+    alert("Please select number of players");
+    return;
+  }
+  main(value);
+}
+document.querySelector("#screen").addEventListener("click", newGame);
+
+function main(numOfPlayers) {
+  // create players
+  const players = []
+  for (let i = 0; i < numOfPlayers; i++) {
+    players.push(new Player(i+1))
+  }
+  console.log(players)
+}

@@ -101,7 +101,7 @@ function generateTilesArray() {
   ];
 
   const assignedTiles = [
-    1, 3, 5, 6, 8, 9, 11, 13, 14, 15, 16, 18, 19, 21, 23, 24, 25, 26, 27, 29, 31, 32, 34,
+    1, 3, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 21, 23, 24, 25, 26, 27, 28, 29, 31, 32, 34,
     35, 37, 39,
   ];
   // create our path of traversal
@@ -114,7 +114,8 @@ function generateTilesArray() {
 
   for (let i = 0; i < tilesInfo.length; i++) {
     const tileObj = tilesArray[assignedTiles[i]];
-    tileObj.node.style.backgroundColor = tileObj.colour = tilesInfo[i].colour;
+    tileObj.node.style.background = tileObj.colour = tilesInfo[i].colour;
+    tileObj.node.style.backgroundSize = "contain"
     tileObj.title = tilesInfo[i].title;
     tileObj.price = tilesInfo[i].price;
     tileObj.rent = tilesInfo[i].rent * 5;

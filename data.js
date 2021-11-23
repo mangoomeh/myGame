@@ -20,7 +20,7 @@ const tilesInfo = [
 
   {
     id: 5,
-    colour: "rgb(37, 36, 36)",
+    colour: 'url("./images/train.jpg")',
     title: "KING CROSS STATION",
     price: 200,
     rent: 25,
@@ -64,6 +64,15 @@ const tilesInfo = [
   },
 
   {
+    id: 12,
+    colour: "url('./images/lightBulb.jpg')",
+    title: "ELECTRIC COMPANY",
+    price: 150,
+    rent: 15,
+    type: "utility"
+  },
+
+  {
     id: 13,
     colour: "PINK",
     title: "WHITEHALL",
@@ -83,7 +92,7 @@ const tilesInfo = [
   
   {
     id: 15,
-    colour: "rgb(37, 36, 36)",
+    colour: 'url("./images/train.jpg")',
     title: "MARYLEBONE STATION",
     price: 200,
     rent: 25,
@@ -146,7 +155,7 @@ const tilesInfo = [
 
   {
     id: 25,
-    colour: "rgb(37, 36, 36)",
+    colour: 'url("./images/train.jpg")',
     title: "FENCHURCH ST. STATION",
     price: 200,
     rent: 25,
@@ -169,6 +178,15 @@ const tilesInfo = [
     price: 260,
     rent: 22,
     type: "deed"
+  },
+
+  {
+    id: 28,
+    colour: "url('./images/waterTap.png')",
+    title: "WATER WORKS",
+    price: 150,
+    rent: 15,
+    type: "utility"
   },
 
   {
@@ -209,7 +227,7 @@ const tilesInfo = [
   
   {
     id: 35,
-    colour: "rgb(37, 36, 36)",
+    colour: 'url("./images/train.jpg")',
     title: "LIVERPOOL ST. STATION",
     price: 200,
     rent: 25,

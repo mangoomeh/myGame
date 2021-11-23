@@ -224,7 +224,7 @@ function nextPlayer() {
   const rollDiceButton = document.querySelector("#rollDiceButton")
   rollDiceButton.disabled = false;
   const currentPlayerLabel = document.querySelector("#currPlayer");
-  currentPlayerLabel.innerHTML = currPlayer+1;
+  currentPlayerLabel.innerHTML = `Player ${currPlayer+1}`;
 }
 
 function payRent(tile) {

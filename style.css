@@ -120,15 +120,32 @@ div.tile:nth-child(37) {
   box-sizing: border-box;
 }
 
+#screen #titleDeed {
+  width: 180px;
+  border: 1px solid black;
+  padding: 10px;
+  justify-content: flex-start;
+  text-shadow: 1px 1px white;
+}
+
 #buyOrNotPrompt {
   width: 200px;
   display: flex;
-  text-align: left;
-  padding: 10px;
-  margin: 70px 0 0 0;
-  border: 1px solid black;
+  align-items: center;
+  margin: 80px 0 0 0;
+}
+
+#buyOrNotPrompt button {
+  width: 100px;
+  margin: 10px 0 0 0;
 }
 
 #colourBar {
   height: 50px;
+}
+
+#infoWindow {
+  border: 1px solid black;
+  width: 200px;
+  margin: 5px;
 }

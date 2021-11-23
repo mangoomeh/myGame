@@ -11,6 +11,9 @@ class Player {
 
   move(steps) {
     this.position += steps;
+    if (this.position >= 40) {
+      this.money += 100;
+    }
     this.position %= 40;
   }
 
@@ -27,6 +30,10 @@ class Player {
 
   getPosition() {
     return this.position;
+  }
+
+  getMoney() {
+    return this.money;
   }
 
   setNode(node) {
@@ -155,6 +162,11 @@ function clickOnBuyOrPass(event) {
     // backend
     const player = getCurrentPlayer();
     const tile = getCurrentTile();
+    // check if player has enough money
+    if (player.getMoney() < tile.price) {
+      alert("You do not have enough money!");
+      return
+    }
     player.buyDeed(tile);
     // frontend
     target.parentNode.remove();
@@ -240,17 +252,7 @@ function checkIfPlayerBuys(tile) {
   const newPrompt = document.createElement("div");
   newPrompt.id = "buyOrNotPrompt"
   // Deed
-  const titleDeed = document.createElement("div");
-  const colourBar = document.createElement("div");
-  colourBar.id = "colourBar"
-  colourBar.style.backgroundColor = tile.colour;
-  const infoBlock = document.createElement("div");
-  infoBlock.innerText = `${tile.title}
-  Price: ${tile.price}
-  Rent: ${tile.rent}
-  `;
-  titleDeed.append(colourBar, infoBlock);
-  
+  const titleDeed = buildTitleDeed(tile);
   // Prompt
   const buyButton = document.createElement("button");
   buyButton.innerHTML = "Buy";
@@ -261,6 +263,20 @@ function checkIfPlayerBuys(tile) {
   newPrompt.append(titleDeed, buyButton, passButton);
   
   screen.append(newPrompt);
+}
+
+function buildTitleDeed(tile) {
+  const titleDeed = document.createElement("div");
+  titleDeed.id = "titleDeed"
+  const colourBar = document.createElement("div");
+  colourBar.id = "colourBar"
+  colourBar.style.backgroundColor = tile.colour;
+  colourBar.innerHTML = `${tile.title}`
+  const infoBlock = document.createElement("div");
+  infoBlock.innerText = `RENT $${tile.rent}
+  PRICE $${tile.price}`;
+  titleDeed.append(colourBar, infoBlock);
+  return titleDeed;
 }
 
 function landOnTileEvent() {

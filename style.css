@@ -29,6 +29,7 @@ body {
   justify-content: center;
   align-content: flex-start;
   position:relative;
+  color: rgb(37, 36, 36);
 }
 
 .tile {
@@ -143,6 +144,9 @@ div.tile:nth-child(37) {
 #colourBar {
   height: 50px;
 }
+
+
+/* CSS RELATED TO INFORMATION WINDOW ON THE RIGHT */
 
 #infoWindow {
   border: 1px solid black;

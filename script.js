@@ -93,19 +93,18 @@ class Tile {
   }
 }
 
-function generateBackendBoard() {
+function generateTilesArray() {
   // in relation to front end divs
   const path = [
     39, 36, 33, 30, 27, 24, 21, 18, 15, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
     14, 17, 20, 23, 26, 29, 32, 35, 38, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40,
   ];
 
-  const assignedDeeds = [
-    1, 3, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 27, 29, 31, 32, 34,
-    37, 39,
+  const assignedTiles = [
+    1, 3, 5, 6, 8, 9, 11, 13, 14, 15, 16, 18, 19, 21, 23, 24, 25, 26, 27, 29, 31, 32, 34,
+    35, 37, 39,
   ];
   // create our path of traversal
-  const tilesArray = [];
   const tiles = document.querySelectorAll(".tile");
   for (const pos of path) {
     newTile = new Tile();
@@ -113,16 +112,15 @@ function generateBackendBoard() {
     tilesArray.push(newTile);
   }
 
-  for (let i = 0; i < assignedDeeds.length; i++) {
-    const tileObj = tilesArray[assignedDeeds[i]];
-    tileObj.node.style.backgroundColor = tileObj.colour = titleDeeds[i].colour;
-    tileObj.title = titleDeeds[i].title;
-    tileObj.price = titleDeeds[i].price;
-    tileObj.rent = titleDeeds[i].rent;
+  for (let i = 0; i < tilesInfo.length; i++) {
+    const tileObj = tilesArray[assignedTiles[i]];
+    tileObj.node.style.backgroundColor = tileObj.colour = tilesInfo[i].colour;
+    tileObj.title = tilesInfo[i].title;
+    tileObj.price = tilesInfo[i].price;
+    tileObj.rent = tilesInfo[i].rent * 5;
   }
-
-  return tilesArray;
 }
+
 
 // ==============================================================================
 // Event Handlers
@@ -183,7 +181,112 @@ function clickOnBuyOrPass(event) {
 }
 
 // ============================================================================
-// Game Functions
+// SETUP THE GAME
+// ============================================================================
+function buildGameBoard() {
+  // build board using DOM
+  const board = document.querySelector("#board");
+  for (let i = 1; i <= 49; i++) {
+    // populate gameboard with tiles
+    const tile = document.createElement("div");
+    tile.className = "tile";
+    board.append(tile);
+  }
+}
+
+function clearScreen() {
+  const screen = document.querySelector("#screen");
+  screen.innerHTML = "";
+}
+
+// ============================================================================
+// START THE GAME
+// ============================================================================
+function buildStatusBar() {
+  // container
+  const screen = document.querySelector("#screen");
+  const statusBar = document.createElement("div");
+  statusBar.id = "statusBar";
+  screen.append(statusBar);
+
+  // first item: information about number of players playing
+  const numOfPlayersLabel = document.createElement("div");
+  const numOfPlayersHeading = document.createElement("div");
+  numOfPlayersHeading.innerHTML = "No. of Players:";
+  const numOfPlayersValue = document.createElement("div");
+  numOfPlayersValue.innerHTML = getNumberOfPlayers();
+  numOfPlayersLabel.append(numOfPlayersHeading, numOfPlayersValue);
+  statusBar.append(numOfPlayersLabel);
+
+  // second item: information about current player
+  const currPlayerLabel = document.createElement("div");
+  const currPlayerHeading = document.createElement("div");
+  currPlayerHeading.innerHTML = "Current Player:";
+  const currPlayerValue = document.createElement("div");
+  currPlayerValue.id = "currPlayer";
+  currPlayerValue.innerHTML = `Player ${currPlayer+1}`;
+  currPlayerLabel.append(currPlayerHeading, currPlayerValue);
+  statusBar.append(currPlayerLabel);
+
+  // third item: roll dice button
+  const rollDiceButton = document.createElement("button");
+  rollDiceButton.id = "rollDiceButton";
+  rollDiceButton.innerHTML = "ROLL DICE";
+  statusBar.append(rollDiceButton);
+}
+
+function buildPlayerTokens() {
+  const numOfPlayers = players.length;
+  for (let i = 1; i <= numOfPlayers; i++) {
+    // create token
+    const player = players[i - 1];
+    const tokenNode = document.createElement("div");
+    tokenNode.className = `token player${i}`;
+    tokenNode.innerHTML = i;
+
+    // put node reference in player
+    player.setNode(tokenNode);
+
+    // place on starting position of board
+    const startingTile = tilesArray[0];
+    startingTile.getNode().append(tokenNode);
+  }
+}
+
+function buildPlayerInfo() {
+  for (const player of players) {
+    const playerDiv = document.createElement("div");
+    const nameDiv = document.createElement("div");
+    const moneyDiv = document.createElement("div");
+    const deedsDiv = document.createElement("div");
+    
+    nameDiv.innerText = `Player ${player.id}`
+    moneyDiv.innerText = `money: $${player.getMoney()}`
+    for (const deed of player.getDeeds()) {
+      const deedDiv = document.createElement("div");
+      deedDiv.innerText = deed.title;
+      deedsDiv.append(deedDiv);
+    }
+    playerDiv.append(nameDiv, moneyDiv, deedsDiv);
+    document.querySelector("#playerInfo").append(playerDiv);
+  }
+}
+
+function refreshPlayerInfo() {
+  const playerInfo = document.querySelector("#playerInfo")
+  playerInfo.innerHTML = ""
+  buildPlayerInfo();
+}
+
+function buildNewGame() {
+  clearScreen();
+  buildStatusBar();
+  buildPlayerTokens();
+  buildPlayerInfo();
+}
+
+// ============================================================================
+// PLAY THE GAME
 // ============================================================================
 function getNumberOfPlayers() {
   return players.length;
@@ -194,7 +297,7 @@ function getCurrentPlayer() {
 }
 
 function getTileByPosition(position) {
-  return tilesInOrderArray[position]; // position is 0-based indexing
+  return tilesArray[position]; // position is 0-based indexing
 }
 
 function getCurrentTile() {
@@ -248,6 +351,10 @@ function payRent(tile) {
   const payer = getCurrentPlayer();
   const payee = tile.getOwner();
   const payment = tile.getRent();
+  // check if payer has enough money
+  if (payer.getMoney() < payment) {
+    // player does not have enough money to pay.. gameover
+  }
   payer.pay(payee, payment);
 }
 
@@ -300,118 +407,20 @@ function landOnTileEvent() {
   }
 }
 
-// ======================================================================
-// FrontEnd Only Functions
-// ======================================================================
-function buildGameBoard() {
-  // build board using DOM
-  const board = document.querySelector("#board");
-  for (let i = 1; i <= 49; i++) {
-    // populate gameboard with tiles
-    const tile = document.createElement("div");
-    tile.className = "tile";
-    board.append(tile);
-  }
+function gameOver() {
+// find winner
+  // sort by money
+  players.sort()  
 }
 
-function frontEndInitialization() {
-  buildGameBoard();
-}
-
-function clearScreen() {
-  const screen = document.querySelector("#screen");
-  screen.innerHTML = "";
-}
-
-function buildStatusBar() {
-  // container
-  const screen = document.querySelector("#screen");
-  const statusBar = document.createElement("div");
-  statusBar.id = "statusBar";
-  screen.append(statusBar);
-
-  // first item: information about number of players playing
-  const numOfPlayersLabel = document.createElement("div");
-  const numOfPlayersHeading = document.createElement("div");
-  numOfPlayersHeading.innerHTML = "No. of Players:";
-  const numOfPlayersValue = document.createElement("div");
-  numOfPlayersValue.innerHTML = getNumberOfPlayers();
-  numOfPlayersLabel.append(numOfPlayersHeading, numOfPlayersValue);
-  statusBar.append(numOfPlayersLabel);
-
-  // second item: information about current player
-  const currPlayerLabel = document.createElement("div");
-  const currPlayerHeading = document.createElement("div");
-  currPlayerHeading.innerHTML = "Current Player:";
-  const currPlayerValue = document.createElement("div");
-  currPlayerValue.id = "currPlayer";
-  currPlayerValue.innerHTML = `Player ${currPlayer+1}`;
-  currPlayerLabel.append(currPlayerHeading, currPlayerValue);
-  statusBar.append(currPlayerLabel);
-
-  // third item: roll dice button
-  const rollDiceButton = document.createElement("button");
-  rollDiceButton.id = "rollDiceButton";
-  rollDiceButton.innerHTML = "ROLL DICE";
-  statusBar.append(rollDiceButton);
-}
-
-function buildPlayerTokens() {
-  const numOfPlayers = players.length;
-  for (let i = 1; i <= numOfPlayers; i++) {
-    // create token
-    const player = players[i - 1];
-    const tokenNode = document.createElement("div");
-    tokenNode.className = `token player${i}`;
-    tokenNode.innerHTML = i;
-
-    // put node reference in player
-    player.setNode(tokenNode);
-
-    // place on starting position of board
-    const startingTile = tilesInOrderArray[0];
-    startingTile.getNode().append(tokenNode);
-  }
-}
-
-function buildPlayerInfo() {
-  for (const player of players) {
-    const playerDiv = document.createElement("div");
-    const nameDiv = document.createElement("div");
-    const moneyDiv = document.createElement("div");
-    const deedsDiv = document.createElement("div");
-    
-    nameDiv.innerText = `Player ${player.id}`
-    moneyDiv.innerText = `money: $${player.getMoney()}`
-    for (const deed of player.getDeeds()) {
-      const deedDiv = document.createElement("div");
-      deedDiv.innerText = deed.title;
-      deedsDiv.append(deedDiv);
-    }
-    playerDiv.append(nameDiv, moneyDiv, deedsDiv);
-    document.querySelector("#playerInfo").append(playerDiv);
-  }
-}
-
-function refreshPlayerInfo() {
-  const playerInfo = document.querySelector("#playerInfo")
-  playerInfo.innerHTML = ""
-  buildPlayerInfo();
-}
-
-function buildNewGame() {
-  clearScreen();
-  buildStatusBar();
-  buildPlayerTokens();
-  buildPlayerInfo();
-}
 
 // hoisting... bad practice but i want to at least get it to work
 // global variables
 let currPlayer = 0;
 const players = [];
-frontEndInitialization();
-const tilesInOrderArray = generateBackendBoard(); // an array of tiles object
+const tilesArray = [];
+buildGameBoard();
+generateTilesArray(); // an array of tiles object
 document.querySelector("#screen").addEventListener("click", clickOnNewGame);
 document.querySelector("#screen").addEventListener("click", clickOnRollDice);
 document.querySelector("#screen").addEventListener("click", clickOnBuyOrPass);

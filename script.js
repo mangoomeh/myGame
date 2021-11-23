@@ -36,6 +36,10 @@ class Player {
     return this.money;
   }
 
+  getDeeds() {
+    return this.ownedDeeds;
+  }
+
   setNode(node) {
     this.node = node;
   }
@@ -237,6 +241,7 @@ function nextPlayer() {
   rollDiceButton.disabled = false;
   const currentPlayerLabel = document.querySelector("#currPlayer");
   currentPlayerLabel.innerHTML = `Player ${currPlayer+1}`;
+  refreshPlayerInfo();
 }
 
 function payRent(tile) {
@@ -369,10 +374,36 @@ function buildPlayerTokens() {
   }
 }
 
+function buildPlayerInfo() {
+  for (const player of players) {
+    const playerDiv = document.createElement("div");
+    const nameDiv = document.createElement("div");
+    const moneyDiv = document.createElement("div");
+    const deedsDiv = document.createElement("div");
+    
+    nameDiv.innerText = `Player ${player.id}`
+    moneyDiv.innerText = `money: $${player.getMoney()}`
+    for (const deed of player.getDeeds()) {
+      const deedDiv = document.createElement("div");
+      deedDiv.innerText = deed.title;
+      deedsDiv.append(deedDiv);
+    }
+    playerDiv.append(nameDiv, moneyDiv, deedsDiv);
+    document.querySelector("#playerInfo").append(playerDiv);
+  }
+}
+
+function refreshPlayerInfo() {
+  const playerInfo = document.querySelector("#playerInfo")
+  playerInfo.innerHTML = ""
+  buildPlayerInfo();
+}
+
 function buildNewGame() {
   clearScreen();
   buildStatusBar();
   buildPlayerTokens();
+  buildPlayerInfo();
 }
 
 // hoisting... bad practice but i want to at least get it to work

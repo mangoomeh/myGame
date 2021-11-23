@@ -148,4 +148,15 @@ div.tile:nth-child(37) {
   border: 1px solid black;
   width: 200px;
   margin: 5px;
+  padding: 10px;
+}
+
+#playerInfo {
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#playerInfo div {
+  width: 200px;
 }

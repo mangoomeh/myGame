@@ -1,6 +1,6 @@
 :root {
-  --gameWindow: 700px;
-  --boardWidth: calc(var(--gameWindow) - 150px);
+  --gameWindow: 580px;
+  --boardWidth: calc(var(--gameWindow) - 30px);
   --tileWidth: calc(var(--boardWidth) / 11);
   --screenWidth: calc(var(--tileWidth) * 9)
 }
@@ -112,7 +112,23 @@ div.tile:nth-child(37) {
 }
 
 #screen #statusBar {
+  background-color: rgb(228, 228, 228);
   width: var(--screenWidth);
   flex-direction: row;
   justify-content: space-around;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#buyOrNotPrompt {
+  width: 200px;
+  display: flex;
+  text-align: left;
+  padding: 10px;
+  margin: 70px 0 0 0;
+  border: 1px solid black;
+}
+
+#colourBar {
+  height: 50px;
 }

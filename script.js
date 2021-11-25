@@ -46,8 +46,8 @@ class Player {
 }
 
 class Tile {
-  constructor(colour, title = null, price, rent, node) {
-    this.colour = colour;
+  constructor(background, title = null, price, rent, node) {
+    this.background = background;
     this.title = title;
     this.price = price;
     this.rent = rent;
@@ -114,14 +114,18 @@ function generateTilesArray() {
     const targetTileIndex = targetTileInfo.id;
     const tileObj = tilesArray[targetTileIndex];
     // colour or add background
-    tileObj.node.style.background = tileObj.colour = targetTileInfo.background;
+    tileObj.node.style.background = targetTileInfo.background;
     tileObj.node.style.backgroundSize = "contain";
     tileObj.node.style.backgroundRepeat = "no-repeat";
     tileObj.node.style.backgroundPosition = "center";
     // add information to our tiles object
-    tileObj.title = tilesInfo[i].title;
-    tileObj.price = tilesInfo[i].price;
-    tileObj.rent = tilesInfo[i].rent * 5;
+    tileObj.background = targetTileInfo.background;
+    tileObj.title = targetTileInfo.title;
+    tileObj.type = targetTileInfo.type;
+    tileObj.price = targetTileInfo.price;
+    tileObj.rent = targetTileInfo.rent * 5;
+    
+
   }
 }
 
@@ -385,7 +389,7 @@ function buildTitleDeed(tile) {
   titleDeed.id = "titleDeed";
   const colourBar = document.createElement("div");
   colourBar.id = "colourBar";
-  colourBar.style.background = tile.colour;
+  colourBar.style.background = tile.background;
   colourBar.style.backgroundSize = "contain";
   colourBar.style.backgroundRepeat = "no-repeat";
   colourBar.style.backgroundPosition = "center";

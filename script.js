@@ -287,7 +287,7 @@ function buildPlayerInfo() {
     const deedsDiv = document.createElement("div");
 
     nameDiv.innerText = `Player ${player.id}`;
-    moneyDiv.innerText = `money: $${player.getMoney()}`;
+    moneyDiv.innerText = `$${player.getMoney()}`;
     for (const deed of player.getDeeds()) {
       const deedDiv = document.createElement("div");
       deedDiv.innerText = deed.title;

@@ -14,6 +14,10 @@ body {
     font-size: 15px;
 }
 
+button {
+  margin: 0;
+}
+
 #logo {
   width: 120px;
   margin: 10px;
@@ -46,6 +50,7 @@ body {
 }
 
 .tile {
+  background-color: white;
   width: var(--tileWidth);
   height: var(--tileWidth);
   /* box-sizing accounts for borders/margins/padding */
@@ -63,6 +68,7 @@ body {
   text-align: center;
   color:white;
   text-shadow: 1px 1px black;
+  line-height: 1.8em;
 }
 
 .player1 {
@@ -83,6 +89,10 @@ body {
 .player4 {
   background-color: rgb(0, 255, 200);
   border-radius: 50%;
+}
+
+div.tile:nth-child(1) {
+  background: url('./images/go.png')
 }
 
 div.tile:nth-child(13),
@@ -136,11 +146,14 @@ div.tile:nth-child(37) {
 
 #screen #statusBar {
   background-color: rgb(228, 228, 228);
+  box-sizing: border-box;
+  border-radius: 20px;
   width: var(--screenWidth);
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 10px;
-  box-sizing: border-box;
+  margin: 2px;
+  
 }
 
 #screen #titleDeed {
@@ -148,6 +161,15 @@ div.tile:nth-child(37) {
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
+  justify-content: flex-start;
+  text-shadow: 1px 1px white;
+}
+
+#screen #titleDeed div {
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
   justify-content: flex-start;
   text-shadow: 1px 1px white;
 }

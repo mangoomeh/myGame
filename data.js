@@ -1,6 +1,13 @@
 // datafile
 const tilesInfo = [
   {
+    id: 0,
+    colour: "url('./images/go.png')",
+    title: "GO",
+    type: "go"
+  },
+  
+  {
     id: 1,
     colour: "BROWN",
     title: "OLD KENT ROAD",

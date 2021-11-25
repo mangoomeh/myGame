@@ -1,11 +1,11 @@
 // datafile
 const tilesInfo = [
-  {
-    id: 0,
-    background: "url('./images/go.png')",
-    title: "GO",
-    type: "go"
-  },
+  // {
+  //   id: 0,
+  //   background: "url('./images/go.png')",
+  //   title: "GO",
+  //   type: "go"
+  // },
   
   {
     id: 1,

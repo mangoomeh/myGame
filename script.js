@@ -283,6 +283,7 @@ function buildPlayerInfo() {
     const playerDiv = document.createElement("div");
     playerDiv.className = "playerDiv";
     const nameDiv = document.createElement("div");
+    nameDiv.style.fontWeight = "bold";
     const moneyDiv = document.createElement("div");
     const deedsDiv = document.createElement("div");
 

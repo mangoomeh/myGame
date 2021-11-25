@@ -196,7 +196,6 @@ div.tile:nth-child(37) {
 #infoWindow {
   background-color: rgb(255, 250, 244);
   border: 5px solid black;
-  width: 200px;
   margin: 0 0 0 5px;
   padding: 10px;
   border-radius: 25px;
@@ -204,12 +203,18 @@ div.tile:nth-child(37) {
 
 #playerInfo {
   height: 500px;
+  width: 200px;
   display: flex;
   flex-wrap: wrap;
 }
 
-#playerInfo div {
+.playerDiv {
+  border: 2px solid black;
+  border-radius: 10px;
   width: 200px;
+  height: 100px;
+  overflow-y: auto;
+  padding: 5px;
 }
 
 #scoreBoard {

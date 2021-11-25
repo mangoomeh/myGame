@@ -16,6 +16,13 @@ const tilesInfo = [
     type: "deed"
   },
 
+  // {
+  //   id: 2,
+  //   background: "",
+  //   title: "Community Chest"
+  //   type: "action"
+  // },
+
   {
     id: 3,
     background: "BROWN",
@@ -24,6 +31,13 @@ const tilesInfo = [
     rent: 4,
     type: "deed"
   },
+
+  // {
+  //   id: 4,
+  //   background: "",
+  //   title: "Income Tax"
+  //   type: "action"
+  // },
 
   {
     id: 5,
@@ -43,6 +57,13 @@ const tilesInfo = [
     type: "deed"
   },
 
+  // {
+  //   id: 7,
+  //   background: "",
+  //   title: "Chance"
+  //   type: "action"
+  // },
+
   {
     id: 8,
     background: "LIGHTBLUE",
@@ -60,6 +81,13 @@ const tilesInfo = [
     rent: 8,
     type: "deed"
   },
+
+  // {
+  //   id: 10,
+  //   background: "",
+  //   title: "Jail"
+  //   type: "rest"
+  // },
 
   {
     id: 11,
@@ -105,7 +133,7 @@ const tilesInfo = [
     rent: 25,
     type: "station"
   },
-
+  
   {
     id: 16,
     background: "ORANGE",
@@ -114,6 +142,13 @@ const tilesInfo = [
     rent: 14,
     type: "deed"
   },
+
+  // {
+  //   id: 17,
+  //   background: "",
+  //   title: "Community Chest"
+  //   type: "action"
+  // },
 
   {
     id: 18,
@@ -133,6 +168,13 @@ const tilesInfo = [
     type: "deed"
   },
 
+  // {
+  //   id: 20,
+  //   background: "",
+  //   title: "Free Parking"
+  //   type: "rest"
+  // },
+
   {
     id: 21,
     background: "RED",
@@ -141,6 +183,13 @@ const tilesInfo = [
     rent: 18,
     type: "deed"
   },
+
+  // {
+  //   id: 22,
+  //   background: "",
+  //   title: "Chance"
+  //   type: "action"
+  // },
 
   {
     id: 23,
@@ -205,6 +254,13 @@ const tilesInfo = [
     type: "deed"
   },
 
+  // {
+  //   id: 30,
+  //   background: "",
+  //   title: "Go To Jail"
+  //   type: "action"
+  // },
+
   {
     id: 31,
     background: "GREEN",
@@ -223,6 +279,13 @@ const tilesInfo = [
     type: "deed"
   },
 
+  // {
+  //   id: 33,
+  //   background: "",
+  //   title: "Community Chest"
+  //   type: "action"
+  // },
+
   { 
     id: 34,
     background: "GREEN",
@@ -240,6 +303,13 @@ const tilesInfo = [
     rent: 25,
     type: "station"
   },
+
+  // {
+  //   id: 36,
+  //   background: "",
+  //   title: "Chance"
+  //   type: "action"
+  // },
   
   { 
     id: 37,
@@ -249,6 +319,13 @@ const tilesInfo = [
     rent: 35,
     type: "deed"
   },
+
+  // {
+  //   id: 38,
+  //   background: "",
+  //   title: "Super Tax"
+  //   type: "tax"
+  // },
 
   { 
     id: 39,

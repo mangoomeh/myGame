@@ -1,10 +1,13 @@
 # Web Monopoly
 
-## Current Progress
+## Introduction
+Web Monopoly is based off the original Monopoly game by Hasbro, designed by Lizzie Magie and Charles Darrow
+You can read more at [Wikipedia: Monopoly(game)]https://en.wikipedia.org/wiki/Monopoly_(game).
 
-1. Monopoly Board is up
-2. Up to 4 players allowed (min 2 players)
-3. Token simulated using CSS
-4. Basic gameplay done - roll dice, move, buy/pass, pay rent
-6. added key:type to tiles but yet to have functionality
-7. Displays player information on the right but very raw
+## About
+Number of players allowed: 2-4
+Gameover condition:
+- when one player goes bankrupt
+- when someone presses the end game button
+Win condition:
+- player with the most money at end game wins

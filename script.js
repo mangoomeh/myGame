@@ -181,8 +181,9 @@ function clickOnBuyOrPass(event) {
     if (player.getMoney() < tile.price) {
       const message = document.createElement("div");
       message.className = "message";
-      message.innerHTML = `You only have ${player.getMoney()}!`;
+      message.innerHTML = `You only have $${player.getMoney()}!`;
       screen.append(message);
+      buyButton.disabled = true;
       return;
     }
     player.buyDeed(tile);

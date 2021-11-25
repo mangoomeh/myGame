@@ -5,6 +5,10 @@
   --screenWidth: calc(var(--tileWidth) * 9)
 }
 
+* {
+  margin: auto;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -12,10 +16,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-family: 'Comfortaa', cursive;
     font-size: 15px;
-}
-
-.message {
-  width: 80%;
+    margin: auto;
 }
 
 #logo {
@@ -94,10 +95,6 @@ body {
   border-radius: 50%;
 }
 
-div.tile:nth-child(1) {
-  background: url('./images/go.png');
-}
-
 div.tile:nth-child(13),
 div.tile:nth-child(16),
 div.tile:nth-child(19),
@@ -154,8 +151,6 @@ div.tile:nth-child(37) {
   text-align: center;
 }
 
-
-
 #screen #statusBar {
   background-color: rgb(228, 228, 228);
   box-sizing: border-box;
@@ -179,14 +174,18 @@ div.tile:nth-child(37) {
   padding: 10px;
   justify-content: flex-start;
   text-shadow: 1px 1px white;
-  margin: 20% 0 10px 0;
+  /* margin: 20% 0 10px 0; */
 }
+
 #colourBar {
   height: 50px;
   border-radius: 10px;
+  margin: 0;
 }
+
 #tileName {
   margin: 15px;
+  align-items: center;
 }
 
 #buyOrNotPrompt, #rentMessageContainer {
@@ -198,6 +197,11 @@ div.tile:nth-child(37) {
 #buyOrNotPrompt button {
   width: 50%;
   margin: 10px 0 0 0;
+}
+
+.message {
+  width: 80%;
+  margin: 10px;
 }
 
 /* CSS RELATED TO INFORMATION WINDOW ON THE RIGHT */

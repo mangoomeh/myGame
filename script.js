@@ -101,7 +101,7 @@ function generateTilesArray() {
   ];
 
   const assignedTiles = [
-    1, 3, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 21, 23, 24, 25, 26, 27, 28, 29, 31, 32, 34,
+    0, 1, 3, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 21, 23, 24, 25, 26, 27, 28, 29, 31, 32, 34,
     35, 37, 39,
   ];
   // create our path of traversal
@@ -112,10 +112,15 @@ function generateTilesArray() {
     tilesArray.push(newTile);
   }
 
+  // colour and add information into our tiles object
   for (let i = 0; i < tilesInfo.length; i++) {
     const tileObj = tilesArray[assignedTiles[i]];
-    tileObj.node.style.background = tileObj.colour = tilesInfo[i].colour;
+    // colour or add background
+    tileObj.node.style.background = tileObj.colour = tilesInfo[i].background;
     tileObj.node.style.backgroundSize = "contain"
+    tileObj.node.style.backgroundRepeat = "no-repeat"
+    tileObj.node.style.backgroundPosition = "center"
+    // add information to our tiles object
     tileObj.title = tilesInfo[i].title;
     tileObj.price = tilesInfo[i].price;
     tileObj.rent = tilesInfo[i].rent * 5;
@@ -388,6 +393,9 @@ function buildTitleDeed(tile) {
   const infoBlock = document.createElement("div");
   infoBlock.innerText = `RENT $${tile.rent}
   PRICE $${tile.price}`;
+  if (tile.isBought()) {
+    infoBlock.innerText += `OWNED BY: ${tile.owner}`
+  }
   titleDeed.append(colourBar, infoBlock);
   return titleDeed;
 }
@@ -399,7 +407,7 @@ function landOnTileEvent() {
     nextPlayer();
     return;
   }
-  
+  // check if tile is bought
   if (tile.isBought()) {
     payRent(tile);
     nextPlayer();
@@ -411,7 +419,16 @@ function landOnTileEvent() {
 function gameOver() {
 // find winner
   // sort by money
-  players.sort()  
+  players.sort((a,b) => b.getMoney() - a.getMoney())
+
+  // create scoreboard
+  const scoreBoard = document.createElement("div");
+  scoreBoard.id = "scoreBoard"
+  for (const player of players) {
+    const entry = document.createElement("div");
+    entry.innerHTML = `${player.id} ${player.getMoney()}`
+  }
+
 }
 
 

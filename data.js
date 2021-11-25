@@ -2,14 +2,14 @@
 const tilesInfo = [
   {
     id: 0,
-    colour: "url('./images/go.png')",
+    background: "url('./images/go.png')",
     title: "GO",
     type: "go"
   },
   
   {
     id: 1,
-    colour: "BROWN",
+    background: "BROWN",
     title: "OLD KENT ROAD",
     price: 60,
     rent: 2,
@@ -18,7 +18,7 @@ const tilesInfo = [
 
   {
     id: 3,
-    colour: "BROWN",
+    background: "BROWN",
     title: "WHITECHAPEL ROAD",
     price: 60,
     rent: 4,
@@ -27,7 +27,7 @@ const tilesInfo = [
 
   {
     id: 5,
-    colour: 'url("./images/train.jpg")',
+    background: 'url("./images/train.jpg")',
     title: "KING CROSS STATION",
     price: 200,
     rent: 25,
@@ -36,7 +36,7 @@ const tilesInfo = [
 
   {
     id: 6,
-    colour: "LIGHTBLUE",
+    background: "LIGHTBLUE",
     title: "THE ANGEL ISLINGTON ROAD",
     price: 100,
     rent: 6,
@@ -45,7 +45,7 @@ const tilesInfo = [
 
   {
     id: 8,
-    colour: "LIGHTBLUE",
+    background: "LIGHTBLUE",
     title: "EUSTON ROAD",
     price: 100,
     rent: 6,
@@ -54,7 +54,7 @@ const tilesInfo = [
 
   {
     id: 9,
-    colour: "LIGHTBLUE",
+    background: "LIGHTBLUE",
     title: "PENTONVILLE ROAD",
     price: 120,
     rent: 8,
@@ -63,7 +63,7 @@ const tilesInfo = [
 
   {
     id: 11,
-    colour: "PINK",
+    background: "PINK",
     title: "PALL MALL",
     price: 140,
     rent: 10,
@@ -72,7 +72,7 @@ const tilesInfo = [
 
   {
     id: 12,
-    colour: "url('./images/lightBulb.jpg')",
+    background: "url('./images/lightBulb.jpg')",
     title: "ELECTRIC COMPANY",
     price: 150,
     rent: 15,
@@ -81,7 +81,7 @@ const tilesInfo = [
 
   {
     id: 13,
-    colour: "PINK",
+    background: "PINK",
     title: "WHITEHALL",
     price: 140,
     rent: 10,
@@ -90,7 +90,7 @@ const tilesInfo = [
 
   {
     id: 14,
-    colour: "PINK",
+    background: "PINK",
     title: "NORTHUMBERLAND AVENUE",
     price: 160,
     rent: 12,
@@ -99,7 +99,7 @@ const tilesInfo = [
   
   {
     id: 15,
-    colour: 'url("./images/train.jpg")',
+    background: 'url("./images/train.jpg")',
     title: "MARYLEBONE STATION",
     price: 200,
     rent: 25,
@@ -108,7 +108,7 @@ const tilesInfo = [
 
   {
     id: 16,
-    colour: "ORANGE",
+    background: "ORANGE",
     title: "BOW STREET",
     price: 180,
     rent: 14,
@@ -117,7 +117,7 @@ const tilesInfo = [
 
   {
     id: 18,
-    colour: "ORANGE",
+    background: "ORANGE",
     title: "MARLBOROUGH STREET",
     price: 180,
     rent: 14,
@@ -126,7 +126,7 @@ const tilesInfo = [
 
   {
     id: 19,
-    colour: "ORANGE",
+    background: "ORANGE",
     title: "VINE STREET",
     price: 200,
     rent: 16,
@@ -135,7 +135,7 @@ const tilesInfo = [
 
   {
     id: 21,
-    colour: "RED",
+    background: "RED",
     title: "STRAND",
     price: 220,
     rent: 18,
@@ -144,7 +144,7 @@ const tilesInfo = [
 
   {
     id: 23,
-    colour: "RED",
+    background: "RED",
     title: "FLEET STREET",
     price: 220,
     rent: 18,
@@ -153,7 +153,7 @@ const tilesInfo = [
 
   {
     id: 24,
-    colour: "RED",
+    background: "RED",
     title: "TRAFALGAR SQUARE",
     price: 240,
     rent: 20,
@@ -162,7 +162,7 @@ const tilesInfo = [
 
   {
     id: 25,
-    colour: 'url("./images/train.jpg")',
+    background: 'url("./images/train.jpg")',
     title: "FENCHURCH ST. STATION",
     price: 200,
     rent: 25,
@@ -171,7 +171,7 @@ const tilesInfo = [
 
   {
     id: 26,
-    colour: "YELLOW",
+    background: "YELLOW",
     title: "LEICESTER SQUARE",
     price: 260,
     rent: 22,
@@ -180,7 +180,7 @@ const tilesInfo = [
 
   {
     id: 27,
-    colour: "YELLOW",
+    background: "YELLOW",
     title: "COVENTRY STREET",
     price: 260,
     rent: 22,
@@ -189,7 +189,7 @@ const tilesInfo = [
 
   {
     id: 28,
-    colour: "url('./images/waterTap.png')",
+    background: "url('./images/waterTap.png')",
     title: "WATER WORKS",
     price: 150,
     rent: 15,
@@ -198,7 +198,7 @@ const tilesInfo = [
 
   {
     id: 29,
-    colour: "YELLOW",
+    background: "YELLOW",
     title: "PICCADILLY",
     price: 280,
     rent: 24,
@@ -207,7 +207,7 @@ const tilesInfo = [
 
   {
     id: 31,
-    colour: "GREEN",
+    background: "GREEN",
     title: "REGENT STREET",
     price: 300,
     rent: 26,
@@ -216,7 +216,7 @@ const tilesInfo = [
 
   {
     id: 32,
-    colour: "GREEN",
+    background: "GREEN",
     title: "OXFORD STREET",
     price: 300,
     rent: 26,
@@ -225,7 +225,7 @@ const tilesInfo = [
 
   { 
     id: 34,
-    colour: "GREEN",
+    background: "GREEN",
     title: "BOND STREET",
     price: 320,
     rent: 28,
@@ -234,7 +234,7 @@ const tilesInfo = [
   
   {
     id: 35,
-    colour: 'url("./images/train.jpg")',
+    background: 'url("./images/train.jpg")',
     title: "LIVERPOOL ST. STATION",
     price: 200,
     rent: 25,
@@ -243,7 +243,7 @@ const tilesInfo = [
   
   { 
     id: 37,
-    colour: "BLUE",
+    background: "BLUE",
     title: "PARK LANE",
     price: 350,
     rent: 35,
@@ -252,7 +252,7 @@ const tilesInfo = [
 
   { 
     id: 39,
-    colour: "BLUE",
+    background: "BLUE",
     title: "MAYFAIR",
     price: 400,
     rent: 50,

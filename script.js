@@ -231,7 +231,7 @@ function buildStatusBar() {
   // first item: information about number of players playing
   const numOfPlayersLabel = document.createElement("div");
   const numOfPlayersHeading = document.createElement("div");
-  numOfPlayersHeading.innerHTML = "No. of Players:";
+  numOfPlayersHeading.innerHTML = "Players:";
   const numOfPlayersValue = document.createElement("div");
   numOfPlayersValue.innerHTML = getNumberOfPlayers();
   numOfPlayersLabel.append(numOfPlayersHeading, numOfPlayersValue);
@@ -240,7 +240,7 @@ function buildStatusBar() {
   // second item: information about current player
   const currPlayerLabel = document.createElement("div");
   const currPlayerHeading = document.createElement("div");
-  currPlayerHeading.innerHTML = "Current Player:";
+  currPlayerHeading.innerHTML = "Current:";
   const currPlayerValue = document.createElement("div");
   currPlayerValue.id = "currPlayer";
   currPlayerValue.innerHTML = `Player ${currPlayer + 1}`;
@@ -382,10 +382,10 @@ function checkIfPlayerBuys(tile) {
   const titleDeed = buildTitleDeed(tile);
   // Prompt
   const buyButton = document.createElement("button");
-  buyButton.innerHTML = "Buy";
+  buyButton.innerHTML = "BUY";
   buyButton.id = "buyButton";
   const passButton = document.createElement("button");
-  passButton.innerHTML = "Pass";
+  passButton.innerHTML = "PASS";
   passButton.id = "passButton";
   newPrompt.append(titleDeed, buyButton, passButton);
 
@@ -438,7 +438,6 @@ function landOnTileEvent() {
     checkIfPlayerBuys(tile);
   }
 }
-
 
 
 function gameOver() {

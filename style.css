@@ -10,7 +10,8 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 15px;
 }
 
 #logo {
@@ -25,17 +26,18 @@ body {
 #gameWindow {
   width: var(--gameWindow);
   height: var(--gameWindow);
-  border: 1px solid black;
+  border: 5px solid rgb(0, 56, 7);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
+  background-color: rgb(255, 250, 244);
 }
 
 #board {
   width: var(--boardWidth);
   height: var(--boardWidth);
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -51,6 +53,7 @@ body {
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 5px;
 }
 
 .token {
@@ -107,7 +110,7 @@ div.tile:nth-child(37) {
   width: var(--screenWidth);
   height: var(--screenWidth);
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-sizing: border-box;
 }
 
@@ -125,7 +128,10 @@ div.tile:nth-child(37) {
 }
 
 #settings {
-  margin: 50px 0 0 0;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px 50px;
+  margin: calc(var(--screenWidth)/4) 0 0 0;
 }
 
 #screen #statusBar {
@@ -139,7 +145,8 @@ div.tile:nth-child(37) {
 
 #screen #titleDeed {
   width: 180px;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 10px;
   padding: 10px;
   justify-content: flex-start;
   text-shadow: 1px 1px white;
@@ -165,7 +172,8 @@ div.tile:nth-child(37) {
 /* CSS RELATED TO INFORMATION WINDOW ON THE RIGHT */
 
 #infoWindow {
-  border: 1px solid black;
+  background-color: rgb(255, 250, 244);
+  border: 5px solid black;
   width: 200px;
   margin: 0 0 0 5px;
   padding: 10px;

@@ -185,6 +185,20 @@ function clickOnBuyOrPass(event) {
   }
 }
 
+function clickPlayAgain(event) {
+  if (event.target.id === "playAgainButton") {
+    window.location.reload();
+  }
+}
+
+function clickEndGame(event) {
+  if (event.target.id === "endGameButton") {
+    const rollDiceButton = document.querySelector("#rollDiceButton");
+    rollDiceButton.disabled = true;
+    gameOver();
+  }
+}
+
 // ============================================================================
 // SETUP THE GAME
 // ============================================================================
@@ -238,6 +252,12 @@ function buildStatusBar() {
   rollDiceButton.id = "rollDiceButton";
   rollDiceButton.innerHTML = "ROLL DICE";
   statusBar.append(rollDiceButton);
+
+  // fourth item: end game button
+  const endGameButton = document.createElement("button");
+  endGameButton.id = "endGameButton";
+  endGameButton.innerHTML = "END GAME";
+  statusBar.append(endGameButton);
 }
 
 function buildPlayerTokens() {
@@ -352,17 +372,6 @@ function nextPlayer() {
   refreshPlayerInfo();
 }
 
-function payRent(tile) {
-  const payer = getCurrentPlayer();
-  const payee = tile.getOwner();
-  const payment = tile.getRent();
-  // check if payer has enough money
-  if (payer.getMoney() < payment) {
-    gameOver();
-  }
-  payer.pay(payee, payment);
-}
-
 function checkIfPlayerBuys(tile) {
   const screen = document.querySelector("#screen");
   // Container
@@ -413,37 +422,61 @@ function landOnTileEvent() {
   }
   // check if tile is bought
   if (tile.isBought()) {
-    payRent(tile);
-    nextPlayer();
+    const payer = getCurrentPlayer();
+    const payee = tile.getOwner();
+    const payment = tile.getRent();
+    // check if player has money to pay rent
+    if (payer.getMoney() < payment) {
+      gameOver();
+    } else {
+      payer.pay(payee, payment);
+      nextPlayer();
+    }
+   ;
   } else {
     checkIfPlayerBuys(tile);
   }
 }
 
-function resetGame() {
-  window.location.reload();
-}
+
 
 function gameOver() {
   // find winner
   // sort by money
   players.sort((a, b) => b.getMoney() - a.getMoney());
+  const winner = players[0];
+
+  // create container
+  const gameOverWindow = document.createElement("div");
+  gameOverWindow.id = "gameOverWindow"
+
+  // gameover logo
+  const gameOverLogo = document.createElement("h3");
+  gameOverLogo.innerHTML = "GAME OVER!"
 
   // create scoreboard
   const scoreBoard = document.createElement("div");
   scoreBoard.id = "scoreBoard";
-  const scoreBoardHeader = document.createElement("h3");
-  scoreBoardHeader.innerHTML = "Game Over!"
-  const ulToStoreEntries = document.createElement("ul");
   for (const player of players) {
-    const entry = document.createElement("li");
+    const entry = document.createElement("div");
     entry.innerHTML = `Player ${player.id} ${player.getMoney()}`;
-    ulToStoreEntries.append(entry);
+    scoreBoard.append(entry);
   }
-  scoreBoard.append(scoreBoardHeader, ulToStoreEntries);
+
+  // create play again button
+  const playAgainButton = document.createElement("button");
+  playAgainButton.id = "playAgainButton";
+  playAgainButton.innerHTML = "Play Again!";
+
+  // append into container
+  gameOverWindow.append(gameOverLogo, scoreBoard, playAgainButton);
+  
   // get screen
   const screen = document.querySelector("#screen");
-  screen.append(scoreBoard);
+  screen.append(gameOverWindow);
+
+  // disable endGame buttono
+  document.querySelector("#endGameButton").disabled = true;
 }
 
 // hoisting... bad practice but i want to at least get it to work
@@ -456,3 +489,5 @@ generateTilesArray(); // an array of tiles object
 document.querySelector("#screen").addEventListener("click", clickOnNewGame);
 document.querySelector("#screen").addEventListener("click", clickOnRollDice);
 document.querySelector("#screen").addEventListener("click", clickOnBuyOrPass);
+document.querySelector("#screen").addEventListener("click", clickPlayAgain);
+document.querySelector("#screen").addEventListener("click", clickEndGame);

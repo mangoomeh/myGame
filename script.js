@@ -124,8 +124,6 @@ function generateTilesArray() {
     tileObj.type = targetTileInfo.type;
     tileObj.price = targetTileInfo.price;
     tileObj.rent = targetTileInfo.rent * 5;
-    
-
   }
 }
 
@@ -360,7 +358,7 @@ function payRent(tile) {
   const payment = tile.getRent();
   // check if payer has enough money
   if (payer.getMoney() < payment) {
-    // player does not have enough money to pay.. gameover
+    gameOver();
   }
   payer.pay(payee, payment);
 }
@@ -399,7 +397,8 @@ function buildTitleDeed(tile) {
   infoBlock.innerText = `RENT $${tile.rent}
   PRICE $${tile.price}`;
   if (tile.isBought()) {
-    infoBlock.innerText += `OWNED BY: ${tile.owner}`;
+    infoBlock.innerText += `
+    OWNED BY: ${tile.owner}`;
   }
   titleDeed.append(colourBar, tileName, infoBlock);
   return titleDeed;
@@ -421,6 +420,10 @@ function landOnTileEvent() {
   }
 }
 
+function resetGame() {
+  window.location.reload();
+}
+
 function gameOver() {
   // find winner
   // sort by money
@@ -429,10 +432,18 @@ function gameOver() {
   // create scoreboard
   const scoreBoard = document.createElement("div");
   scoreBoard.id = "scoreBoard";
+  const scoreBoardHeader = document.createElement("h3");
+  scoreBoardHeader.innerHTML = "Game Over!"
+  const ulToStoreEntries = document.createElement("ul");
   for (const player of players) {
-    const entry = document.createElement("div");
-    entry.innerHTML = `${player.id} ${player.getMoney()}`;
+    const entry = document.createElement("li");
+    entry.innerHTML = `Player ${player.id} ${player.getMoney()}`;
+    ulToStoreEntries.append(entry);
   }
+  scoreBoard.append(scoreBoardHeader, ulToStoreEntries);
+  // get screen
+  const screen = document.querySelector("#screen");
+  screen.append(scoreBoard);
 }
 
 // hoisting... bad practice but i want to at least get it to work

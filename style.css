@@ -110,6 +110,10 @@ div.tile:nth-child(37) {
   text-align: center;
 }
 
+#settings {
+  margin: 50px 0 0 0;
+}
+
 #screen #statusBar {
   background-color: rgb(228, 228, 228);
   width: var(--screenWidth);

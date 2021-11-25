@@ -11,18 +11,19 @@
     <div id="gameWindow">
       <div id="board"></div>
       <div id="screen">
-        <h3>Number of Players:</h3>
-        <form>
-          <input type="radio" name="numOfPlayers" value="2" />2
-          <input type="radio" name="numOfPlayers" value="3" />3
-          <input type="radio" name="numOfPlayers" value="4" />4
-        </form>
-        <button id="newGame">NEW GAME</button>
+        <div id="settings">
+          <h3>Number of Players:</h3>
+          <form>
+            <input type="radio" name="numOfPlayers" value="2" />2
+            <input type="radio" name="numOfPlayers" value="3" />3
+            <input type="radio" name="numOfPlayers" value="4" />4
+          </form>
+          <button id="newGame">NEW GAME</button>
+        </div>
       </div>
     </div>
     <div id="infoWindow">
-      <div id="playerInfo">
-      </div>
+      <div id="playerInfo"></div>
     </div>
     <script src="data.js"></script>
     <script src="script.js"></script>

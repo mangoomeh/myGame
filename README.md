@@ -6,6 +6,7 @@ You can read more at [Wikipedia: Monopoly(game)]https://en.wikipedia.org/wiki/Mo
 
 ## About
 Number of players allowed: 2-4\
+\
 Gameover condition:
 - when one player goes bankrupt
 - when someone presses the end game button

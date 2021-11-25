@@ -37,7 +37,6 @@ body {
   /* box-sizing accounts for borders/margins/padding */
   box-sizing: border-box;
   border: 1px solid black;
-
   display: flex;
   flex-wrap: wrap;
 }
@@ -162,4 +161,9 @@ div.tile:nth-child(37) {
 
 #playerInfo div {
   width: 200px;
+}
+
+#scoreBoard {
+  display: flex;
+  flex-direction: column;
 }

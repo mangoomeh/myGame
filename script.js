@@ -100,10 +100,6 @@ function generateTilesArray() {
     14, 17, 20, 23, 26, 29, 32, 35, 38, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40,
   ];
 
-  const assignedTiles = [
-    1, 3, 5, 6, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 21, 23, 24, 25, 26, 27, 28, 29, 31, 32, 34,
-    35, 37, 39,
-  ];
   // create our path of traversal
   const tiles = document.querySelectorAll(".tile");
   for (const pos of path) {
@@ -114,19 +110,20 @@ function generateTilesArray() {
 
   // colour and add information into our tiles object
   for (let i = 0; i < tilesInfo.length; i++) {
-    const tileObj = tilesArray[assignedTiles[i]];
+    const targetTileInfo = tilesInfo[i];
+    const targetTileIndex = targetTileInfo.id;
+    const tileObj = tilesArray[targetTileIndex];
     // colour or add background
-    tileObj.node.style.background = tileObj.colour = tilesInfo[i].background;
-    tileObj.node.style.backgroundSize = "contain"
-    tileObj.node.style.backgroundRepeat = "no-repeat"
-    tileObj.node.style.backgroundPosition = "center"
+    tileObj.node.style.background = tileObj.colour = targetTileInfo.background;
+    tileObj.node.style.backgroundSize = "contain";
+    tileObj.node.style.backgroundRepeat = "no-repeat";
+    tileObj.node.style.backgroundPosition = "center";
     // add information to our tiles object
     tileObj.title = tilesInfo[i].title;
     tileObj.price = tilesInfo[i].price;
     tileObj.rent = tilesInfo[i].rent * 5;
   }
 }
-
 
 // ==============================================================================
 // Event Handlers
@@ -173,7 +170,7 @@ function clickOnBuyOrPass(event) {
     // check if player has enough money
     if (player.getMoney() < tile.price) {
       alert("You do not have enough money!");
-      return
+      return;
     }
     player.buyDeed(tile);
     // frontend
@@ -230,7 +227,7 @@ function buildStatusBar() {
   currPlayerHeading.innerHTML = "Current Player:";
   const currPlayerValue = document.createElement("div");
   currPlayerValue.id = "currPlayer";
-  currPlayerValue.innerHTML = `Player ${currPlayer+1}`;
+  currPlayerValue.innerHTML = `Player ${currPlayer + 1}`;
   currPlayerLabel.append(currPlayerHeading, currPlayerValue);
   statusBar.append(currPlayerLabel);
 
@@ -265,9 +262,9 @@ function buildPlayerInfo() {
     const nameDiv = document.createElement("div");
     const moneyDiv = document.createElement("div");
     const deedsDiv = document.createElement("div");
-    
-    nameDiv.innerText = `Player ${player.id}`
-    moneyDiv.innerText = `money: $${player.getMoney()}`
+
+    nameDiv.innerText = `Player ${player.id}`;
+    moneyDiv.innerText = `money: $${player.getMoney()}`;
     for (const deed of player.getDeeds()) {
       const deedDiv = document.createElement("div");
       deedDiv.innerText = deed.title;
@@ -279,8 +276,8 @@ function buildPlayerInfo() {
 }
 
 function refreshPlayerInfo() {
-  const playerInfo = document.querySelector("#playerInfo")
-  playerInfo.innerHTML = ""
+  const playerInfo = document.querySelector("#playerInfo");
+  playerInfo.innerHTML = "";
   buildPlayerInfo();
 }
 
@@ -346,10 +343,10 @@ function nextPlayer() {
   currPlayer++;
   currPlayer %= getNumberOfPlayers();
   // frontend
-  const rollDiceButton = document.querySelector("#rollDiceButton")
+  const rollDiceButton = document.querySelector("#rollDiceButton");
   rollDiceButton.disabled = false;
   const currentPlayerLabel = document.querySelector("#currPlayer");
-  currentPlayerLabel.innerHTML = `Player ${currPlayer+1}`;
+  currentPlayerLabel.innerHTML = `Player ${currPlayer + 1}`;
   refreshPlayerInfo();
 }
 
@@ -368,7 +365,7 @@ function checkIfPlayerBuys(tile) {
   const screen = document.querySelector("#screen");
   // Container
   const newPrompt = document.createElement("div");
-  newPrompt.id = "buyOrNotPrompt"
+  newPrompt.id = "buyOrNotPrompt";
   // Deed
   const titleDeed = buildTitleDeed(tile);
   // Prompt
@@ -379,24 +376,28 @@ function checkIfPlayerBuys(tile) {
   passButton.innerHTML = "Pass";
   passButton.id = "passButton";
   newPrompt.append(titleDeed, buyButton, passButton);
-  
+
   screen.append(newPrompt);
 }
 
 function buildTitleDeed(tile) {
   const titleDeed = document.createElement("div");
-  titleDeed.id = "titleDeed"
+  titleDeed.id = "titleDeed";
   const colourBar = document.createElement("div");
-  colourBar.id = "colourBar"
-  colourBar.style.backgroundColor = tile.colour;
-  colourBar.innerHTML = `${tile.title}`
+  colourBar.id = "colourBar";
+  colourBar.style.background = tile.colour;
+  colourBar.style.backgroundSize = "contain";
+  colourBar.style.backgroundRepeat = "no-repeat";
+  colourBar.style.backgroundPosition = "center";
+  const tileName = document.createElement("div");
+  tileName.innerHTML = `${tile.title}`
   const infoBlock = document.createElement("div");
   infoBlock.innerText = `RENT $${tile.rent}
   PRICE $${tile.price}`;
   if (tile.isBought()) {
-    infoBlock.innerText += `OWNED BY: ${tile.owner}`
+    infoBlock.innerText += `OWNED BY: ${tile.owner}`;
   }
-  titleDeed.append(colourBar, infoBlock);
+  titleDeed.append(colourBar, tileName, infoBlock);
   return titleDeed;
 }
 
@@ -417,20 +418,18 @@ function landOnTileEvent() {
 }
 
 function gameOver() {
-// find winner
+  // find winner
   // sort by money
-  players.sort((a,b) => b.getMoney() - a.getMoney())
+  players.sort((a, b) => b.getMoney() - a.getMoney());
 
   // create scoreboard
   const scoreBoard = document.createElement("div");
-  scoreBoard.id = "scoreBoard"
+  scoreBoard.id = "scoreBoard";
   for (const player of players) {
     const entry = document.createElement("div");
-    entry.innerHTML = `${player.id} ${player.getMoney()}`
+    entry.innerHTML = `${player.id} ${player.getMoney()}`;
   }
-
 }
-
 
 // hoisting... bad practice but i want to at least get it to work
 // global variables

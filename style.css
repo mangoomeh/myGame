@@ -25,6 +25,7 @@ button {
 
 #container {
   display: flex;
+  border-radius: 25px;
 }
 
 #gameWindow {
@@ -36,6 +37,7 @@ button {
   align-items: center;
   border-radius: 25px;
   background-color: rgb(255, 250, 244);
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 
 #board {
@@ -59,6 +61,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   border-radius: 5px;
+  box-shadow: 0 0 2px #ccc;
 }
 
 .token {
@@ -92,7 +95,7 @@ button {
 }
 
 div.tile:nth-child(1) {
-  background: url('./images/go.png')
+  background: url('./images/go.png');
 }
 
 div.tile:nth-child(13),
@@ -106,6 +109,7 @@ div.tile:nth-child(34),
 div.tile:nth-child(37) {
   width: var(--screenWidth);
   border: none;
+  box-shadow: none;
 }
 
 /* CSS RELATED TO SCREEN (CENTER OF GAMEBOARD) */
@@ -153,7 +157,6 @@ div.tile:nth-child(37) {
   justify-content: space-between;
   padding: 10px;
   margin: 2px;
-  
 }
 
 #screen #titleDeed {
@@ -163,22 +166,21 @@ div.tile:nth-child(37) {
   padding: 10px;
   justify-content: flex-start;
   text-shadow: 1px 1px white;
+  margin: 0 0 10px 0;
 }
-
-#screen #titleDeed div {
-  /* border: 1px solid black; */
+#colourBar {
+  height: 50px;
   border-radius: 10px;
-  padding: 5px;
-  margin: 5px;
-  justify-content: flex-start;
-  text-shadow: 1px 1px white;
+}
+#tileName {
+  margin: 15px;
 }
 
-#buyOrNotPrompt {
+#buyOrNotPrompt, #rentMessageContainer {
   width: 200px;
   display: flex;
   align-items: center;
-  margin: 80px 0 0 0;
+  margin: 30px 0 0 0;
 }
 
 #buyOrNotPrompt button {
@@ -186,9 +188,7 @@ div.tile:nth-child(37) {
   margin: 10px 0 0 0;
 }
 
-#colourBar {
-  height: 50px;
-}
+
 
 
 /* CSS RELATED TO INFORMATION WINDOW ON THE RIGHT */
@@ -199,6 +199,7 @@ div.tile:nth-child(37) {
   margin: 0 0 0 5px;
   padding: 10px;
   border-radius: 25px;
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 
 #playerInfo {
@@ -215,6 +216,7 @@ div.tile:nth-child(37) {
   height: 100px;
   overflow-y: auto;
   padding: 5px;
+  box-shadow: 1px 1px 3px 3px #ccc;
 }
 
 #scoreBoard {

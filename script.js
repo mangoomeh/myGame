@@ -403,13 +403,20 @@ function buildTitleDeed(tile) {
   colourBar.style.backgroundRepeat = "no-repeat";
   colourBar.style.backgroundPosition = "center";
   const tileName = document.createElement("div");
-  tileName.innerHTML = `${tile.title}`
+  tileName.id = "tileName"
+  tileName.innerHTML = `${tile.title}`;
   const infoBlock = document.createElement("div");
-  infoBlock.innerText = `RENT $${tile.rent}
-  PRICE $${tile.price}`;
+  infoBlock.id = "titleDeedInfoBlock";
+  // items inside infoblock
+  const rent = document.createElement("div");
+  rent.innerText = `RENT $${tile.rent}`;
+  const price = document.createElement("div");
+  price.innerText = `PRICE $${tile.price}`;
+  infoBlock.append(rent, price);
   if (tile.isBought()) {
-    infoBlock.innerText += `
-    OWNED BY: ${tile.owner}`;
+    const owner = document.createElement("div");
+    owner.innerHTML = `OWNED BY PLAYER ${tile.owner.id}`;
+    infoBlock.append(owner);
   }
   titleDeed.append(colourBar, tileName, infoBlock);
   return titleDeed;
@@ -431,15 +438,27 @@ function landOnTileEvent() {
     if (payer.getMoney() < payment) {
       gameOver();
     } else {
+      // pay rent
       payer.pay(payee, payment);
-      nextPlayer();
+      // show what player paid for
+      const messageContainer = document.createElement("div");
+      messageContainer.id = "rentMessageContainer";
+      const titleDeed = buildTitleDeed(tile);
+      const paidMessage = document.createElement("div");
+      paidMessage.innerHTML = `Player ${payer.id} paid Player ${payee.id} $${payment} for rent.`;
+      const continueButton = document.createElement("button");
+      continueButton.innerHTML = "CONTINUE";
+      messageContainer.append(titleDeed, paidMessage, continueButton);
+      // add to screen
+      const screen = document.querySelector("#screen");
+      screen.append(messageContainer);
+
+      // nextPlayer();
     }
-   ;
   } else {
     checkIfPlayerBuys(tile);
   }
 }
-
 
 function gameOver() {
   // find winner
@@ -449,11 +468,11 @@ function gameOver() {
 
   // create container
   const gameOverWindow = document.createElement("div");
-  gameOverWindow.id = "gameOverWindow"
+  gameOverWindow.id = "gameOverWindow";
 
   // gameover logo
   const gameOverLogo = document.createElement("h3");
-  gameOverLogo.innerHTML = "GAME OVER!"
+  gameOverLogo.innerHTML = "GAME OVER!";
 
   // create scoreboard
   const scoreBoard = document.createElement("div");
@@ -471,7 +490,7 @@ function gameOver() {
 
   // append into container
   gameOverWindow.append(gameOverLogo, scoreBoard, playAgainButton);
-  
+
   // get screen
   const screen = document.querySelector("#screen");
   screen.append(gameOverWindow);

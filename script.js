@@ -180,6 +180,7 @@ function clickOnBuyOrPass(event) {
     // check if player has enough money
     if (player.getMoney() < tile.price) {
       const message = document.createElement("div");
+      message.className = "message";
       message.innerHTML = `You only have ${player.getMoney()}!`;
       screen.append(message);
       return;
@@ -189,6 +190,7 @@ function clickOnBuyOrPass(event) {
     buyButton.remove();
     passButton.remove();
     const message = document.createElement("div");
+    message.className = "message";
     message.innerHTML = `Player ${player.id} purchased ${tile.title} for $${tile.price}`;
     screen.append(message);
     nextPlayer();
@@ -197,6 +199,7 @@ function clickOnBuyOrPass(event) {
     buyButton.remove();
     passButton.remove();
     const message = document.createElement("div");
+    message.className = "message";
     message.innerHTML = `Player ${player.id} passed his/her chance to purchase ${tile.title}`;
     screen.append(message);
     nextPlayer();
@@ -312,6 +315,7 @@ function buildPlayerInfo() {
   for (const player of players) {
     const playerDiv = document.createElement("div");
     playerDiv.className = "playerDiv";
+    playerDiv.id = `player${player.id}`;
     const nameDiv = document.createElement("div");
     nameDiv.style.fontWeight = "bold";
     const moneyDiv = document.createElement("div");
@@ -327,12 +331,21 @@ function buildPlayerInfo() {
     playerDiv.append(nameDiv, moneyDiv, deedsDiv);
     document.querySelector("#playerInfo").append(playerDiv);
   }
+  const player = getCurrentPlayer();
+  const playerDiv = document.querySelector(`#player${player.id}`);
+  playerDiv.style.background = "rgb(255, 247, 139)";
 }
 
 function refreshPlayerInfo() {
   const playerInfo = document.querySelector("#playerInfo");
   playerInfo.innerHTML = "";
   buildPlayerInfo();
+}
+
+function highlightCurrentPlayerInfo() {
+  const player = getCurrentPlayer();
+  const playerDiv = document.querySelector(`#player${player.id}`);
+  playerDiv.style.background = "yellow";
 }
 
 function buildNewGame() {
@@ -483,13 +496,13 @@ function landOnTileEvent() {
       messageContainer.id = "rentMessageContainer";
       const titleDeed = buildTitleDeed(tile);
       const paidMessage = document.createElement("div");
+      paidMessage.className = "message";
       paidMessage.innerHTML = `Player ${payer.id} paid Player ${payee.id} $${payment} for rent.`;
       messageContainer.append(titleDeed, paidMessage);
       // add to screen
       const screen = document.querySelector("#innerScreen");
       screen.append(messageContainer);
-
-      // nextPlayer();
+      nextPlayer();
     }
   } else {
     checkIfPlayerBuys(tile);

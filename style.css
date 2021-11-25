@@ -14,8 +14,8 @@ body {
     font-size: 15px;
 }
 
-button {
-  margin: 0;
+.message {
+  width: 80%;
 }
 
 #logo {
@@ -227,6 +227,7 @@ div.tile:nth-child(37) {
   margin: 5px;
   box-shadow: 1px 1px 3px 3px #ccc;
 }
+
 
 #scoreBoard {
   display: flex;

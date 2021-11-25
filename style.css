@@ -1,5 +1,5 @@
 :root {
-  --gameWindow: 580px;
+  --gameWindow: 540px;
   --boardWidth: calc(var(--gameWindow) - 30px);
   --tileWidth: calc(var(--boardWidth) / 11);
   --screenWidth: calc(var(--tileWidth) * 9)
@@ -128,10 +128,23 @@ div.tile:nth-child(37) {
   box-sizing: border-box;
 }
 
-#screen h3, 
-#screen form, 
-#screen button {
+#settings {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px 50px;
+  margin: calc(var(--screenWidth)/4) 0 0 0;
+}
+
+#settings h3, 
+#settings form, 
+#settings button {
   margin: 10px;
+}
+
+#warningMessage {
+  height: 1em;
+  color: red;
+  font-size: 0.8em;
 }
 
 #screen div {
@@ -141,12 +154,7 @@ div.tile:nth-child(37) {
   text-align: center;
 }
 
-#settings {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 20px 50px;
-  margin: calc(var(--screenWidth)/4) 0 0 0;
-}
+
 
 #screen #statusBar {
   background-color: rgb(228, 228, 228);
@@ -159,14 +167,19 @@ div.tile:nth-child(37) {
   margin: 2px;
 }
 
+#screen #innerScreen {
+  width: 100%;
+  align-items: center;
+}
+
 #screen #titleDeed {
-  width: 180px;
+  width: 80%;
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
   justify-content: flex-start;
   text-shadow: 1px 1px white;
-  margin: 0 0 10px 0;
+  margin: 20% 0 10px 0;
 }
 #colourBar {
   height: 50px;
@@ -177,19 +190,15 @@ div.tile:nth-child(37) {
 }
 
 #buyOrNotPrompt, #rentMessageContainer {
-  width: 200px;
+  width: 50%;
   display: flex;
   align-items: center;
-  margin: 30px 0 0 0;
 }
 
 #buyOrNotPrompt button {
-  width: 100px;
+  width: 50%;
   margin: 10px 0 0 0;
 }
-
-
-
 
 /* CSS RELATED TO INFORMATION WINDOW ON THE RIGHT */
 
@@ -203,7 +212,6 @@ div.tile:nth-child(37) {
 }
 
 #playerInfo {
-  height: 500px;
   width: 200px;
   display: flex;
   flex-wrap: wrap;
@@ -212,10 +220,11 @@ div.tile:nth-child(37) {
 .playerDiv {
   border: 2px solid black;
   border-radius: 10px;
-  width: 200px;
+  width: 100%;
   height: 100px;
   overflow-y: auto;
   padding: 5px;
+  margin: 5px;
   box-shadow: 1px 1px 3px 3px #ccc;
 }
 

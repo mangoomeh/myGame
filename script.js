@@ -145,7 +145,8 @@ function clickOnNewGame(event) {
     }
   }
   if (value === -1) {
-    alert("Please select number of players");
+    document.querySelector("#warningMessage").innerHTML =
+      "Please select no. of players";
     return;
   }
   generatePlayers(value);
@@ -156,6 +157,7 @@ function clickOnRollDice(event) {
   if (event.target.id !== "rollDiceButton") {
     return;
   }
+  clearInnerScreen();
   const steps = rollDice();
   event.target.disabled = true;
   moveCurrentPlayer(steps);
@@ -165,22 +167,38 @@ function clickOnRollDice(event) {
 function clickOnBuyOrPass(event) {
   // check which button user clicks
   const target = event.target;
+  if (target.id !== "buyButton" && target.id !== "passButton") {
+    return;
+  }
+
+  const player = getCurrentPlayer();
+  const tile = getCurrentTile();
+  const buyButton = document.querySelector("#buyButton");
+  const passButton = document.querySelector("#passButton");
+  const screen = document.querySelector("#innerScreen");
   if (target.id === "buyButton") {
-    // backend
-    const player = getCurrentPlayer();
-    const tile = getCurrentTile();
     // check if player has enough money
     if (player.getMoney() < tile.price) {
-      alert("You do not have enough money!");
+      const message = document.createElement("div");
+      message.innerHTML = `You only have ${player.getMoney()}!`;
+      screen.append(message);
       return;
     }
     player.buyDeed(tile);
-    // frontend
-    target.parentNode.remove();
+    // remove buy and pass button and add a message
+    buyButton.remove();
+    passButton.remove();
+    const message = document.createElement("div");
+    message.innerHTML = `Player ${player.id} purchased ${tile.title} for $${tile.price}`;
+    screen.append(message);
     nextPlayer();
   } else if (target.id === "passButton") {
-    // frontend
-    target.parentNode.remove();
+    // remove buy and pass button and add a message
+    buyButton.remove();
+    passButton.remove();
+    const message = document.createElement("div");
+    message.innerHTML = `Player ${player.id} passed his/her chance to purchase ${tile.title}`;
+    screen.append(message);
     nextPlayer();
   }
 }
@@ -218,6 +236,11 @@ function clearScreen() {
   screen.innerHTML = "";
 }
 
+function clearInnerScreen() {
+  const innerScreen = document.querySelector("#innerScreen");
+  innerScreen.innerHTML = "";
+}
+
 // ============================================================================
 // START THE GAME
 // ============================================================================
@@ -233,6 +256,7 @@ function buildStatusBar() {
   const numOfPlayersHeading = document.createElement("div");
   numOfPlayersHeading.innerHTML = "Players:";
   const numOfPlayersValue = document.createElement("div");
+  numOfPlayersValue.id = "numOfPlayers";
   numOfPlayersValue.innerHTML = getNumberOfPlayers();
   numOfPlayersLabel.append(numOfPlayersHeading, numOfPlayersValue);
   statusBar.append(numOfPlayersLabel);
@@ -258,6 +282,12 @@ function buildStatusBar() {
   endGameButton.id = "endGameButton";
   endGameButton.innerHTML = "END GAME";
   statusBar.append(endGameButton);
+}
+
+function buildInnerScreen() {
+  const innerScreen = document.createElement("div");
+  innerScreen.id = "innerScreen";
+  document.querySelector("#screen").append(innerScreen);
 }
 
 function buildPlayerTokens() {
@@ -308,6 +338,7 @@ function refreshPlayerInfo() {
 function buildNewGame() {
   clearScreen();
   buildStatusBar();
+  buildInnerScreen();
   buildPlayerTokens();
   buildPlayerInfo();
 }
@@ -348,7 +379,6 @@ function rollDice() {
     value = Math.ceil(Math.random() * numOfSides);
     sum += value;
   }
-  console.log(`You rolled ${sum}`);
   return sum;
 }
 
@@ -363,19 +393,27 @@ function moveCurrentPlayer(steps) {
 }
 
 function nextPlayer() {
-  // backend
+  // increase the current player number by 1
   currPlayer++;
   currPlayer %= getNumberOfPlayers();
-  // frontend
+  // update the current player value
+  updateStatusBar();
+  // disable roll dice button
   const rollDiceButton = document.querySelector("#rollDiceButton");
   rollDiceButton.disabled = false;
-  const currentPlayerLabel = document.querySelector("#currPlayer");
-  currentPlayerLabel.innerHTML = `Player ${currPlayer + 1}`;
+
   refreshPlayerInfo();
 }
 
+function updateStatusBar() {
+  const numOfPlayersLabel = document.querySelector("#numOfPlayers");
+  numOfPlayersLabel.innerHTML = `${getNumberOfPlayers()}`;
+  const currentPlayerLabel = document.querySelector("#currPlayer");
+  currentPlayerLabel.innerHTML = `Player ${currPlayer + 1}`;
+}
+
 function checkIfPlayerBuys(tile) {
-  const screen = document.querySelector("#screen");
+  const screen = document.querySelector("#innerScreen");
   // Container
   const newPrompt = document.createElement("div");
   newPrompt.id = "buyOrNotPrompt";
@@ -389,7 +427,7 @@ function checkIfPlayerBuys(tile) {
   passButton.innerHTML = "PASS";
   passButton.id = "passButton";
   newPrompt.append(titleDeed, buyButton, passButton);
-
+  // append prompt to screen
   screen.append(newPrompt);
 }
 
@@ -403,7 +441,7 @@ function buildTitleDeed(tile) {
   colourBar.style.backgroundRepeat = "no-repeat";
   colourBar.style.backgroundPosition = "center";
   const tileName = document.createElement("div");
-  tileName.id = "tileName"
+  tileName.id = "tileName";
   tileName.innerHTML = `${tile.title}`;
   const infoBlock = document.createElement("div");
   infoBlock.id = "titleDeedInfoBlock";
@@ -446,11 +484,9 @@ function landOnTileEvent() {
       const titleDeed = buildTitleDeed(tile);
       const paidMessage = document.createElement("div");
       paidMessage.innerHTML = `Player ${payer.id} paid Player ${payee.id} $${payment} for rent.`;
-      const continueButton = document.createElement("button");
-      continueButton.innerHTML = "CONTINUE";
-      messageContainer.append(titleDeed, paidMessage, continueButton);
+      messageContainer.append(titleDeed, paidMessage);
       // add to screen
-      const screen = document.querySelector("#screen");
+      const screen = document.querySelector("#innerScreen");
       screen.append(messageContainer);
 
       // nextPlayer();
@@ -461,10 +497,9 @@ function landOnTileEvent() {
 }
 
 function gameOver() {
-  // find winner
+  clearInnerScreen();
   // sort by money
   players.sort((a, b) => b.getMoney() - a.getMoney());
-  const winner = players[0];
 
   // create container
   const gameOverWindow = document.createElement("div");
@@ -491,8 +526,8 @@ function gameOver() {
   // append into container
   gameOverWindow.append(gameOverLogo, scoreBoard, playAgainButton);
 
-  // get screen
-  const screen = document.querySelector("#screen");
+  // add to screen
+  const screen = document.querySelector("#innerScreen");
   screen.append(gameOverWindow);
 
   // disable endGame buttono

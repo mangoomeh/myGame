@@ -5,7 +5,7 @@ Web Monopoly is based off the original Monopoly game by Hasbro, designed by Lizz
 You can read more at [Wikipedia: Monopoly(game)]https://en.wikipedia.org/wiki/Monopoly_(game).
 
 ## About
-Number of players allowed: 2-4
+Number of players allowed: 2-4\
 Gameover condition:
 - when one player goes bankrupt
 - when someone presses the end game button

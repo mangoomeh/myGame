@@ -281,6 +281,7 @@ function buildPlayerTokens() {
 function buildPlayerInfo() {
   for (const player of players) {
     const playerDiv = document.createElement("div");
+    playerDiv.className = "playerDiv";
     const nameDiv = document.createElement("div");
     const moneyDiv = document.createElement("div");
     const deedsDiv = document.createElement("div");

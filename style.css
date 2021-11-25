@@ -7,9 +7,19 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
+}
+
+#logo {
+  width: 120px;
+  margin: 10px;
+}
+
+#container {
+  display: flex;
 }
 
 #gameWindow {
@@ -19,6 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 25px;
 }
 
 #board {
@@ -83,6 +94,8 @@ div.tile:nth-child(37) {
   width: var(--screenWidth);
   border: none;
 }
+
+/* CSS RELATED TO SCREEN (CENTER OF GAMEBOARD) */
 
 #screen {
   display: flex;
@@ -154,8 +167,9 @@ div.tile:nth-child(37) {
 #infoWindow {
   border: 1px solid black;
   width: 200px;
-  margin: 5px;
+  margin: 0 0 0 5px;
   padding: 10px;
+  border-radius: 25px;
 }
 
 #playerInfo {

@@ -1,6 +1,4 @@
 # Web Monopoly
-
-## Introduction
 Web Monopoly is based off the original Monopoly game by Hasbro, designed by Lizzie Magie and Charles Darrow
 You can read more at [Wikipedia: Monopoly(game)](https://en.wikipedia.org/wiki/Monopoly_(game)).
 

@@ -1,5 +1,5 @@
 # Web Monopoly
-Web Monopoly is based off the original game [Wikipedia: Monopoly(game)](https://en.wikipedia.org/wiki/Monopoly_(game)). This game was created for one of the projects for GA SEI-33. This was an attempt to build a web application game using HTML, CSS, DOM, and vanilla JavaScript. <br />
+Web Monopoly is based off the original game [Wikipedia: Monopoly(game)](https://en.wikipedia.org/wiki/Monopoly_(game)). This game was created for one of the projects for GA SEI-33. This was an attempt to build a web application/game using HTML, CSS, DOM, and vanilla JavaScript. <br />
 
 ![Monopoly Snippet](./snippet.png)
 

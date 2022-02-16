@@ -4,7 +4,7 @@ Web Monopoly is based off the original game [Wikipedia: Monopoly(game)](https://
 ![Monopoly Snippet](./snippet.png)
 
 ## Setup
-The game can run on any modern web browsers. Open the .html file on the browser. A live version is available here: ![Web Monopoly]https://mangoomeh.github.io/web-monopoly/
+The game can run on any modern web browsers. Open the .html file on the browser. A live version is available here: [Web Monopoly]https://mangoomeh.github.io/web-monopoly/
 
 ## Project Status
 Completed. Might recreate using React.js / Angular.js

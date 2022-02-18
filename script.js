@@ -486,8 +486,11 @@ function landOnTileEvent() {
     const payer = getCurrentPlayer();
     const payee = tile.getOwner();
     const payment = tile.getRent();
-    // check if player has money to pay rent
-    if (payer.getMoney() < payment) {
+    // check if payer owns the tile
+    if (payer.id === payee.id) {
+      nextPlayer();
+    }  // check if player has money to pay rent
+    else if (payer.getMoney() < payment) {
       gameOver();
     } else {
       // pay rent
